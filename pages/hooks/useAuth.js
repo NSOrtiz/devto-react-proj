@@ -16,6 +16,7 @@ export default function useAuth(){
             setToken(tkn);
         }
     }, [router]);
+    console.log(token)
     return token;
     
 }

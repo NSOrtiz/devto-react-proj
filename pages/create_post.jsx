@@ -42,12 +42,12 @@ export default function NewPost(){
             if(!token){
                 throw new Error("Not logged in. Please log in first.");
             }
-            console.log("Token:", token);
+            console.log("token:", token);
             const newPost = await createPost({
                 image: data.image,
                 title: data.title,
                 body: data.body,
-            }, token)
+            })
             console.log('Post created:', newPost)
             reset();
             setImg("");

@@ -1,4 +1,5 @@
 const API_URL = "https://desafiobk-g33-2.onrender.com"
+//const API_URL = "http://localhost:8080"
 
 export async function login({email, password}){
     try{
@@ -51,14 +52,15 @@ export async function createUser(user){
     }
 }
 
-export async function createPost(postbody, token){
+export async function createPost(postbody){
+    const token = localStorage.getItem("token");
 
     try {
         const response= await fetch(`${API_URL}/posts`,{
             method: 'POST',
             headers: {
                     'Content-Type': 'application/json',
-                    'Authorization': `Bearer ${token}`
+                    'Authorization': token,
             },
             body: JSON.stringify(postbody)
         })
@@ -68,6 +70,7 @@ export async function createPost(postbody, token){
             throw new Error(errorResponse.message || "Error crating post");
         }
         const json = await response.json();
+        console.log(json)
         return json.data;
     } catch (error) {
         console.error("Error creating post: ", error);
