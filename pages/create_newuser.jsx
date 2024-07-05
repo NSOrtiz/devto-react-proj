@@ -31,6 +31,11 @@ export default function FormCreateAcount(){
     }
 
     async function onSubmit(data){
+
+        if(!data.profilePic){
+            data.profilePic = defaultImg
+        }
+
         if (data.pass !== data.password){
         setError("pass",{
             type: "manual", 
@@ -38,6 +43,7 @@ export default function FormCreateAcount(){
         });
         return; 
         } 
+
 
         try{
             const newUser = await createUser({ 
@@ -53,9 +59,8 @@ export default function FormCreateAcount(){
             setProfileImg("");
             toast.success("User created successfully");
         } catch (error){
-            console.error("Error received:", error);
+            console.error("Error received 2:", error);
             if(error.message === 'Email already in use'){
-
                 setError("email", {message: 'Email already in use'})
                 toast.error("Email already in use");
                 return;
@@ -68,9 +73,9 @@ export default function FormCreateAcount(){
     };
 
     return(
-        <main className="w-full h-dvh flex flex-col items-center">
+        <main className="w-full h-dvh flex flex-col items-center bg-gray-100">
             <form  
-            className="flex flex-col w-full max-w-screen-sm border border-gray-200 rounded-md mt-[3rem] p-10"
+            className="flex flex-col w-full max-w-screen-sm bg-white border border-gray-200 rounded-md mt-[3rem] p-10"
             onSubmit={handleSubmit(onSubmit)}> 
                 <h1 className="font-[700] text-lg">Create your account</h1>
                 <label className="mt-5 font-semibold">Profile image</label>

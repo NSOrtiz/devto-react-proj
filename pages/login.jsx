@@ -15,6 +15,7 @@ export default function FormLoginPage(){
         formState: {errors},
         setError,
         reset,
+        setValue,
     } = useForm();
 
     async function onSubmit(data){
@@ -23,8 +24,9 @@ export default function FormLoginPage(){
             if(token){
                 window.localStorage.setItem("token", token);
                 toast.success("Login successful");
+                localStorage.setItem("token", token);
                 reset();
-                //router.push("/post");
+                router.push("/create_post");
             } else {
                 toast.error("Incorrect user or password");
                 setError("root.credentials", {

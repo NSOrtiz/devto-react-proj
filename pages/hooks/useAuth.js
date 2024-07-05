@@ -7,11 +7,13 @@ export default function useAuth(){
     const [token, setToken] = useState("");
 
     useEffect(()=>{
-        const tkn = localStorage("token");
+        const tkn = localStorage.getItem("token");
         setToken(tkn)
         if(!tkn){
             toast.error("Se necesita incio de sesion");
             router.push("/login");
+        } else {
+            setToken(tkn);
         }
     }, [router]);
     return token;
