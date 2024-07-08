@@ -50,7 +50,7 @@ export default function FormLoginPage(){
     }, []);
 
     function handleCreateAccount(){
-        router.push("/create_acount")
+        router.push("/")
     }
 
     function handleEmail(event){
@@ -58,7 +58,7 @@ export default function FormLoginPage(){
     }
 
     return(
-        <main className="flex flex-col items-center m-5"> 
+        <main className="flex flex-col items-center m-5 bg-white"> 
             {errors.root?.credentials && (
                 <div className="text-red-700 bg-red-100 w-full max-w-screen-sm justify-center mb-5 p-2"> 
                     <h2 className="font-semibold">Unable to login.</h2>

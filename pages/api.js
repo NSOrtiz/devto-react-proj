@@ -77,3 +77,39 @@ export async function createPost(postbody){
         throw error;
     }
 }
+
+export async function getAllPost(){
+    try{
+        const response = await fetch(`${API_URL}/posts`, {
+            method: 'GET',
+        });
+        
+        if(!response.ok){
+            const errorResponse = await response.json();
+            throw new Error(errorResponse.message || "Error crating post");
+        }
+        const json = await response.json();
+        return json.data.posts || []
+    } catch (error) {
+        console.error("Error get post: ", error);
+        throw error;
+    }
+}
+
+export async function getPostId(id){
+    try {
+        const response = await fetch(`${API_URL}/posts/${id}`, {
+            method: "GET",
+          });
+          if(!response.ok){
+            const errorResponse = await response.json();
+            throw new Error(errorResponse.message || "Error get detail post");
+        }
+          const json = await response.json();
+          return json.data.posts;
+        
+    } catch (error) {
+        console.error("Error get detail post ", error);
+        throw error;
+    }
+}

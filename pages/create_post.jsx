@@ -5,11 +5,13 @@ import { useEffect, useState } from "react";
 import useAuth from "./hooks/useAuth";
 import { createPost } from "./api";
 import { toast } from "sonner";
+import { useRouter } from "next/router";
 
 const sourcecodepro = Source_Code_Pro({subsets: ["latin"]})
 
 export default function NewPost(){
     const token = useAuth();
+    const router = useRouter();
 
     const [postImg, setImg] = useState("")
     const defaultImg= "https://picsum.photos/600/300"
@@ -32,6 +34,11 @@ export default function NewPost(){
         setImg(event.target.value);
     };
 
+    function handlePrincipalPage() {
+        router.push("/");
+        console.log("refresh")
+    }
+
     async function onSubmit(data){
         
         if(!data.image){
@@ -52,6 +59,7 @@ export default function NewPost(){
             reset();
             setImg("");
             toast.success("Post created successfully");
+            router.push("/");
         } catch (error) {
             setError("formError",{message: error.message})
             toast.error("An error occurred. Please try again.");
@@ -63,7 +71,8 @@ export default function NewPost(){
             <nav className="w-full h-10 grid grid-cols-6 bg-gray-100 m-2">
                 <div className="col-span-2 flex flex-row justify-center items-center gap-5">
                     <img src="https://dev-to-uploads.s3.amazonaws.com/uploads/logos/original_logo_0DliJcfsTcciZen38gX9.png" alt="" 
-                    className="h-9"/>
+                    className="h-9 cursor-pointer"
+                    onClick={handlePrincipalPage}/>
                     <h1 className="font-semibold"> Create post</h1>
                 </div>
                 <div className="col-span-2 flex flex-row justify-end items-center gap-1 ">
@@ -71,7 +80,8 @@ export default function NewPost(){
                     <label className = " hover:rounded-md hover:text-blue-600 hover:bg-[#dadff0] hover:cursor-pointer p-2" htmlFor="">Preview</label>
                 </div>
                 <div className="col-span-2 flex flex-row justify-end items-center mr-5">
-                    <button className="items-center hover:rounded-md hover:text-blue-600 hover:bg-[#dadff0] hover:cursor-pointer px-2 py-1" >✕</button>
+                    <button className="items-center hover:rounded-md hover:text-blue-600 hover:bg-[#dadff0] hover:cursor-pointer px-2 py-1" 
+                    onClick={handlePrincipalPage}>✕</button>
                 </div>
             </nav>
             {
