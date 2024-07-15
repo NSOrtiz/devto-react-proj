@@ -97,19 +97,9 @@ export async function getAllPost(){
 }
 
 export async function getPostId(id){
-    try {
-        const response = await fetch(`${API_URL}/posts/${id}`, {
-            method: "GET",
-          });
-          if(!response.ok){
-            const errorResponse = await response.json();
-            throw new Error(errorResponse.message || "Error get detail post");
-        }
-          const json = await response.json();
-          return json.data.posts;
-        
-    } catch (error) {
-        console.error("Error get detail post ", error);
-        throw error;
-    }
+    const response = await fetch(`${API_URL}/posts/${id}`, {
+        method: "GET",
+      });
+      const json = await response.json();
+      return json; 
 }

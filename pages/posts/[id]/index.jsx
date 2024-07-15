@@ -4,23 +4,26 @@ import { useEffect, useState } from "react";
 import Layout from "@/components/Layout";
 import { toast } from "sonner";
 
+import Tags from "@/components/Tags";
+import Reactions from "@/components/Reactions";
 
 export default function PostDetail(){
     const router = useRouter();
+    const { id } = router.query; 
+    console.log(id)
+
     const [post, setPost] = useState(null);
-    const [id, setId] = useState(null);
-
-    useEffect(() => {
-        if (router.query.id) {
-            setId(router.query.id);
-        }
-    }, [router.query.id])
-
+    
     useEffect(() => {
         if (id){
             getPostId(id)
-            .then((post)=>{
-                setPost(post);
+            .then((response)=>{
+                if (response.success) {
+                    setPost(response.data.post);
+                } else {
+                    toast.error("Error fetching post");
+                }
+
             }) 
             .catch ((error) => {
                     toast.error("Error al obtener el post");
@@ -34,14 +37,17 @@ export default function PostDetail(){
         return new Date(dateString).toLocaleDateString("en-US", options);
     };
 
+    if (!post) {
+        return <div>Loading...</div>;
+    }
+
     return(
         <Layout>
             <main>
-            
-                    <article className="w-full max-w-[600px] flex flex-col justify-center bg-white border border-gray-200 rounded-md">
+            <article className="w-full max-w-[600px] flex flex-col justify-center bg-white border border-gray-200 rounded-md">
                         <img
                             src={post.image}
-                            alt="Post Image"
+                            alt={post.title}
                             className="h-[300px] w-[600px] border border-gray-200 rounded-t-md"
                         />
                         <div className="flex flex-row items-center gap-2 m-5">
@@ -67,9 +73,9 @@ export default function PostDetail(){
                             <Reactions />
                         </div>
                     </article>
-               
 
             </main>
+            
         </Layout>
 
     )

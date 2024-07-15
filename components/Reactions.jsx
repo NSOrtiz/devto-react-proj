@@ -22,37 +22,43 @@ export default function Reactions() {
 
     function renderReactions() {
         const reactionIcons = ["💖", "🦄", "🤯", "🙌", "🔥"];
-        const reactionsToShow = Math.min(numReactions, reactionIcons.length);
+        let nvListReactionIcons = []
+        let lg = 0;
 
+        if (numReactions <= 4 ){
+            lg = numReactions
+            nvListReactionIcons = reactionIcons.slice(0, lg);
+        } else if (numReactions >= 5){
+            lg = 5
+            nvListReactionIcons = reactionIcons.slice(0, lg);
+        }
+
+        console.log(numReactions)
+        console.log(nvListReactionIcons)
+       
         return (
-            <div className="relative inline-block">
-                {reactionIcons.slice(0, reactionsToShow).map((icon, idx) => (
+            <div className="relative inline-block flex flex-row">
+                {nvListReactionIcons.map((icon, idx) => (
                     <label
                         key={`reaction-${idx}`}
-                        className={`reactionbubble absolute top-0 left-${idx * 3} z-50`}
+                        className={`reactionbubble`}
+                        style={{ marginLeft: idx === 0 ? '0' : '-7px' }}
                     >
                         {icon}
                     </label>
                 ))}
-                <p className="ml-20 font-light text-sm">{numReactions}</p>
+                <p className="ml-5 font-light text-sm">{numReactions}</p>
             </div>
-        );
+        ); 
     }
 
     return (
         <section className="ml-16">
-            {numReactions < 4 && (
-                <div className="flex flex-row">
+            <div className="flex flex-row">
                     {renderReactions()}
                     {comments()}
                 </div>
-            )}
-            {numReactions >= 4 && (
-                <div className="relative inline-block flex flex-row ">
-                    {renderReactions()}
-                    {comments()}
-                </div>
-            )}
+
         </section>
     );
 }
