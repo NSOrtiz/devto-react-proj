@@ -1,15 +1,22 @@
 import clsx from "clsx";
+import { useEffect } from "react";
 
 const ListTags = ["#javascript", "#vue", "#nuxt", "#react", "#webdev", "#programming","#aws", "#codeopen", "#frontend", "#linux", "testing", "#codepen", "#html", "#ai", "mobile", "#watercooler", "#discuss" ];
 
-export default function Tags() {
+export default function Tags({ postId, tags }) {
     function getRandomTags(tags) {
         const lg = 4;
         const shortList = tags.sort(() => 0.5 - Math.random());
         return shortList.slice(0, lg);
     }
 
-    const randomTagsList = getRandomTags(ListTags);
+    const randomTagsList = tags.length ? tags : getRandomTags(ListTags);
+
+    useEffect(() => {
+        if (!tags.length) {
+            localStorage.setItem(`post-${postId}-tags`, JSON.stringify(randomTagsList));
+        }
+    }, [postId, tags, randomTagsList]);
 
     return (
         <div className="flex flex-row gap-2">

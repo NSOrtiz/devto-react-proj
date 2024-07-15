@@ -13,9 +13,15 @@ export default function PostDetail(){
     console.log(id)
 
     const [post, setPost] = useState(null);
+    const [tags, setTags] = useState([]);
+    const [reactions, setReactions] = useState({})
     
     useEffect(() => {
         if (id){
+            const savedTags = localStorage.getItem(`post-${id}-tags`);
+            const savedReactions = localStorage.getItem(`post-${id}-reactions`);
+            if (savedTags) setTags(JSON.parse(savedTags));
+            if (savedReactions) setReactions(JSON.parse(savedReactions));
             getPostId(id)
             .then((response)=>{
                 if (response.success) {
@@ -44,7 +50,7 @@ export default function PostDetail(){
     return(
         <Layout>
             <main>
-            <article className="w-full max-w-[600px] flex flex-col justify-center bg-white border border-gray-200 rounded-md">
+                <article className="w-full max-w-[600px] flex flex-col justify-center bg-white border border-gray-200 rounded-md">
                         <img
                             src={post.image}
                             alt={post.title}
@@ -66,13 +72,13 @@ export default function PostDetail(){
                         <p>{post.body}</p>
 
                         <div className="ml-16 mb-2">
-                            <Tags />
+                            <Tags postId={post._id} tags={tags} />
                         </div>
 
                         <div className="mb-5">
-                            <Reactions />
+                            <Reactions postId={post._id} reactions={reactions} />
                         </div>
-                    </article>
+                </article>
 
             </main>
             

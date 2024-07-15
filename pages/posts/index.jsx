@@ -6,7 +6,11 @@ import Reactions from "@/components/Reactions";
 import { useRouter } from "next/router";
 
 export default function AllPosts() {
-    const [posts, setPosts] = useState([]);
+    const [posts, setPosts] = useState([])
+    
+    const [tagsMap, setTagsMap] = useState({}); 
+    const [reactionsMap, setReactionsMap] = useState({});
+
     const router = useRouter();
 
     useEffect(() => {
@@ -20,6 +24,29 @@ export default function AllPosts() {
             });
     }, []);
 
+    useEffect(() => {
+        const tags = {};
+        const reactions = {};
+
+        posts.forEach((post) => {
+            const postId = post._id;
+
+            const savedTags = localStorage.getItem(`post-${postId}-tags`);
+            const savedReactions = localStorage.getItem(`post-${postId}-reactions`);
+
+            if (savedTags) {
+                tags[postId] = JSON.parse(savedTags);
+            }
+            if (savedReactions) {
+                reactions[postId] = JSON.parse(savedReactions);
+            }
+        });
+
+        setTagsMap(tags);
+        setReactionsMap(reactions);
+    }, [posts]);
+
+
     const formatDate = (dateString) => {
         const date = new Date(dateString);
         const options = { day: 'numeric', month: 'long' };
@@ -31,7 +58,7 @@ export default function AllPosts() {
     }
 
     return (
-        <main className="flex justify-center flex-col max-w-screen-sm">
+        <main className="flex justify-center flex-col w-full">
             <div className="flex flex-row gap-2 text-lg ml-5 mb-2">
                 <label className="font-bold rounded-md hover:bg-white hover:text-blue-600 p-2">Relevant</label>
                 <label className="text-gray-700 rounded-md hover:bg-white hover:text-blue-600 p-2">Latest</label>
@@ -56,10 +83,10 @@ export default function AllPosts() {
                                 {item.title}
                             </label>
                             <div className="ml-16 mb-2">
-                                <Tags/>
+                                <Tags postId={item._id} tags={tagsMap[item._id] || []} />
                             </div>
                             <div className="mb-5">
-                                <Reactions/>
+                                <Reactions postId={item._id} reactions={reactionsMap[item._id] || {}} />
                             </div>
                         </article>
                     );

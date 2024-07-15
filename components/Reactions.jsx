@@ -1,15 +1,21 @@
 import { useEffect, useState } from "react";
 
-export default function Reactions() {
+export default function Reactions({ postId, reactions: initialReactions }) {
     const [numReactions, setNumReactions] = useState(0);
     const [numComments, setNumComments] = useState(0);
 
     useEffect(() => {
-        const reactions = Math.floor(Math.random() * 100) + 1;
-        const comments = Math.floor(Math.random() * reactions) + 1;
-        setNumReactions(reactions);
-        setNumComments(comments);
-    }, []);
+        if (initialReactions.reactions) {
+            setNumReactions(initialReactions.reactions);
+            setNumComments(initialReactions.comments);
+        } else {
+            const reactions = Math.floor(Math.random() * 100) + 1;
+            const comments = Math.floor(Math.random() * reactions) + 1;
+            setNumReactions(reactions);
+            setNumComments(comments);
+            localStorage.setItem(`post-${postId}-reactions`, JSON.stringify({ reactions, comments }));
+        }
+    }, [postId, initialReactions]);
 
     function comments() {
         return (
