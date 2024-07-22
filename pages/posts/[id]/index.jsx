@@ -57,7 +57,7 @@ export default function PostDetail(){
 
     return(
         <Layout>
-            <main className="flex flex-row w-full h-dvh bg-slate-100 ">
+            <main className="flex flex-row w-full h-full bg-slate-100 ">
 
                 <section className="w-1/6 flex flex-col items-end p-8 gap-10">
                     {["https://img.icons8.com/?size=100&id=pi2pfVYSOGmk&format=png&color=000000", 

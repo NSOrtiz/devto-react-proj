@@ -8,11 +8,11 @@ export default function CreateAcountPage(){
     const router=useRouter();
 
     function handleFormCreatAcount(){
-        router.push("/create_newuser")
+        router.push("/create_newuser");
     }
 
     function handleLogIn(){
-        router.push("/login")
+        router.push("/login");
     }
 
     useEffect(()=>{

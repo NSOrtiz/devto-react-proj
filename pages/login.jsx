@@ -26,7 +26,7 @@ export default function FormLoginPage(){
                 toast.success("Login successful");
                 localStorage.setItem("token", token);
                 reset();
-                router.push("/create_post");
+                router.push("/");
             } else {
                 toast.error("Incorrect user or password");
                 setError("root.credentials", {
@@ -50,12 +50,13 @@ export default function FormLoginPage(){
     }, []);
 
     function handleCreateAccount(){
-        router.push("/")
+        router.push("/create_account")
     }
 
     function handleEmail(event){
         setValue("email", event.target.value.toLowerCase());
     }
+
 
     return(
         <main className="flex flex-col items-center m-5 bg-white"> 

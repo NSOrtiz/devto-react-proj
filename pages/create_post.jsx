@@ -69,17 +69,17 @@ export default function NewPost(){
     return(
         <main className="w-full h-dvh flex flex-col bg-gray-100 ">
             <nav className="w-full h-10 grid grid-cols-6 bg-gray-100 m-2">
-                <div className="col-span-2 flex flex-row justify-center items-center gap-5">
+                <div className="col-span-4 pl-5 md:pl-32 md:col-span-2 flex flex-row justify-start items-center gap-5">
                     <img src="https://dev-to-uploads.s3.amazonaws.com/uploads/logos/original_logo_0DliJcfsTcciZen38gX9.png" alt="" 
                     className="h-9 cursor-pointer"
                     onClick={handlePrincipalPage}/>
                     <h1 className="font-semibold"> Create post</h1>
                 </div>
-                <div className="col-span-2 flex flex-row justify-end items-center gap-1 ">
-                    <label className = "font-semibold hover:rounded-md hover:text-blue-600 hover:bg-[#dadff0] hover:cursor-pointer p-2" htmlFor="">Edit</label>
-                    <label className = " hover:rounded-md hover:text-blue-600 hover:bg-[#dadff0] hover:cursor-pointer p-2" htmlFor="">Preview</label>
+                <div className=" col-span-1 md:col-span-2 flex flex-row justify-end items-center gap-1 ">
+                    <label className = " hidden md:block font-semibold hover:rounded-md hover:text-blue-600 hover:bg-[#dadff0] hover:cursor-pointer p-2" htmlFor="">Edit</label>
+                    <label className = " hidden md:block hover:rounded-md hover:text-blue-600 hover:bg-[#dadff0] hover:cursor-pointer p-2" htmlFor="">Preview</label>
                 </div>
-                <div className="col-span-2 flex flex-row justify-end items-center mr-5">
+                <div className="col-start-6 col-span-1  md:col-span-2 flex flex-row justify-end items-center mr-5">
                     <button className="items-center hover:rounded-md hover:text-blue-600 hover:bg-[#dadff0] hover:cursor-pointer px-2 py-1" 
                     onClick={handlePrincipalPage}>✕</button>
                 </div>
@@ -102,7 +102,7 @@ export default function NewPost(){
             }
             <section className="grid grid-cols-6" >
                 <form 
-                className="col-span-3 col-start-2 "
+                className="col-span-6 md:col-span-3 md:col-start-2 "
                 onSubmit={handleSubmit(onSubmit)}>
                     <div className="bg-white border border-gray-200 rounded-md mt-1">
                         <div className="p-10 flex flex-col justify-center">

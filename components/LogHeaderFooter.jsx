@@ -1,10 +1,18 @@
-
+import { useRouter } from "next/router";
 
 export function LogHeader(){
+    const router = useRouter();
+    
+    function handlePrincipalPage() {
+        router.push("/");
+        console.log("refresh")
+    }
+
     return(
         <section className="flex flex-col items-center" >
                 <img src="https://dev-to-uploads.s3.amazonaws.com/uploads/logos/original_logo_0DliJcfsTcciZen38gX9.png" alt=""
-                className="w-[60px]"  />
+                className="w-[60px] cursor-pointer" 
+                onClick={handlePrincipalPage} />
                 <h1 className="font-sans font-bold text-3xl mt-5 text-center">
                 Join the DEV Community</h1>
                 <p className="mt-2 text-center">
