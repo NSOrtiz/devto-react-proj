@@ -1,5 +1,5 @@
-const API_URL = "https://desafiobk-g33-2.onrender.com"
-//const API_URL = "http://localhost:8080"
+//const API_URL = "https://desafiobk-g33-2.onrender.com"
+const API_URL = "https://api33g.natsspace.lat"
 
 export async function login({email, password}){
     try{

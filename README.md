@@ -1,40 +1,54 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Desafio de React-Next.js
 
-## Getting Started
 
-First, run the development server:
+## Descripción general:
+El presente proyecto tiene la finalidad de demostrar los temas vistos durante el módulo de react y next.js.
+La página pretende ser una reproducción (aunque no exacta) de la página original de DEV (https://dev.to/).
+En las cuales se encuentran las páginas de registro de usuario, Log in de usuario, lista de Post, Detalle de Post y creación de Post.
+Para la realización de este proyecto se integró la api del desafío anterior de backend: https://github.com/NSOrtiz/DesafioBK_g33.git, el cual almacena la información de los Posts y usuarios.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+
+## Instalación:
+Se usó framework de React Next.js para crear el proyecto:
+-   **next**: npm create next-app@latest
+y se instalaron las siguientes dependencias por default al seleccionar la configuración en la creación del proyecto:
+-   **react**
+-   **react-dom**
+-   **postcss**
+-   **tailwindcss**
+-   **eslint**
+aparte se instalaron las siguientes dependencias:
+-   **react-hook-form**: npm install react-hook-form
+-   **clsx**: npm install clsx
+-   **sonner**: npm install sonner
+
+
+Se uso tailwind para generar las clases de estilo para el maquetado del proyecto, junto con clsx para el uso de algunas excepciones en las clases de los elementos.
+
+
+También se implementó react-hook-form para realizar los formularios de log in, creación de usuario y publicación de nuevo post.
+
+
+Se utilizó sonner para mostrar notificaciones de error.
+
+
+Para la ejecución local del proyecto se corre en terminal la línea
 ```
+    npm run dev
+```
+## Descripción de contenido:
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-You can start editing the page by modifying `pages/index.js`. The page auto-updates as you edit the file.
+El repositorio cuenta con varias carpetas:
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.js`.
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+-   **Pages**:  contiene las páginas principales.
+    * Index.js es la página principal al hacer uso de next.js se , también están login.js, create_post y create_account, las cuales son las páginas con los formularios para ingresar, crear cuenta o crear post.
+    * api.js presenta la funciones con los métodos de GET y POST para realizar peticiones a la api: https://api33g.natsspace.lat/
+-   **Post**:  Está dentro de la carpeta pages, contiene el código mostrar la información de la lista de post obtenida de la api.
+    -   **[id]**: Se encuentra dentro de la carpeta post, su página de index presenta el código del detalle del post y usuario.
+-   **hooks**:  Dentro de esta carpeta esta el codigo para la autentificación para el login
+-   **components**Incluye varias secciones de código para desplegar, elementos de las páginas mencionadas anteriormente.
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
 
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+Desplegado de vercel:
