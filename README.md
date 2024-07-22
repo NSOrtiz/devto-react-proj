@@ -52,4 +52,4 @@ El repositorio cuenta con varias carpetas:
 
 
 Desplegado de vercel:
-https://devto-project.vercel.app/
+https://devto-project-9clsf7rus-nsortizs-projects.vercel.app
