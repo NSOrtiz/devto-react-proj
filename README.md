@@ -44,7 +44,7 @@ El repositorio cuenta con varias carpetas:
 
 -   **Pages**:  contiene las páginas principales.
     * Index.js es la página principal al hacer uso de next.js se , también están login.js, create_post y create_account, las cuales son las páginas con los formularios para ingresar, crear cuenta o crear post.
-    * api.js presenta la funciones con los métodos de GET y POST para realizar peticiones a la api: https://api33g.natsspace.lat/
+    * api.js presenta la funciones con los métodos de GET y POST para realizar peticiones a la api: https://desafiobk-g33-2.onrender.com
 -   **Post**:  Está dentro de la carpeta pages, contiene el código mostrar la información de la lista de post obtenida de la api.
     -   **[id]**: Se encuentra dentro de la carpeta post, su página de index presenta el código del detalle del post y usuario.
 -   **hooks**:  Dentro de esta carpeta esta el codigo para la autentificación para el login
